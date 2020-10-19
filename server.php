@@ -3,6 +3,9 @@
 class Electicity 
 {
     public function getAdd(Request $request){
+
+        $serverIp = '192.168.1.1';
+
         $data = $request->get('data');
 
         $dataArr = json_decode($data);
@@ -17,7 +20,7 @@ class Electicity
 
         Electricity::create($values);
 
-        $transport = new \Gelf\Transport\UdpTransport('188.64.168.16');
+        $transport = new \Gelf\Transport\UdpTransport($serverIp);
         $publisher = new \Gelf\Publisher();
         $publisher->addTransport($transport);
 
